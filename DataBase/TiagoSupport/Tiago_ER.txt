@@ -1,0 +1,83 @@
+Data base: AgrupamentoSTB
+
+Type_User(id_Type_User,Type_User);
+PK(id_Type_User)
+NN(Type_User)
+
+Language(Id_Language, Language)
+PK(Id_Language)
+NN(Language)
+
+Subject(Id_Subject, Name)
+PK(Id_Subject)
+NN(Name)
+
+Year(Id_year, year, is_Open)
+PK(Id_year)
+NN(year, is_Open)
+
+Period(id_Period, Name)
+PK(id_Period)
+NN(Name)
+
+Users( id_User, Name, Email, Password, token, id_type_user);
+PK(id_User)
+NN(Name, Email, Password, id_type_user)
+FK(id_type_user)ReferencesType_User(id_Type_User)
+
+Address(id_Address, Address, Is_Main, id_User)
+PK(id_Address)
+NN(Address, Is_Main, id_User)
+FK(id_User)ReferencesUser(id_User)
+
+Email_Simulation(Id_Email_Simulation, change_date, Feedback, id_user)
+PK(Id_Email_Simulation)
+NN(change_date, Feedback, id_user)
+FK(id_user)References User(id_user)
+
+Login_Register(Id_Login, Date, id_User)
+PK(Id_Login)
+NN(Date, id_User)
+FK(id_User)References User(id_User)
+
+Guardian(Id_Guardian, id_User)
+PK(Id_Guardian)
+NN(id_User)
+FK(id_User)References User(id_User)
+
+Student(id_Student, school, sex, birth, address, famsize, Pstatus, Medu,Fedu, traveltime,
+	studytime, failures, schoolsup, famsup, paid, activities, nursery, higher, Internet,
+	romantic, famrel, freetime, goout, Dalc, Walc, health, absences, Id_User)
+PK(id_Student)
+NN(school, sex, birth, address, failures, activities,nursery, higher, Internet, absences)
+FK(Id_User)References User(Id_User)
+
+Guardian_Student(id_Guardian_Students, Id_Guardian, Id_Student)
+PK(id_Guardian_Students)
+NN(Id_Guardian, Id_Student)
+FK(Id_Guardian)References Guardian(Id_Guardian)
+FK(Id_Student)References Student(Id_Student)
+
+Translated(id_translated, Fjob, Mjob, guardian, Reason, id_Student, id_language)
+PK(id_translated)
+NN(Fjob, Mjob, guardian, Reason, id_Student, id_language)
+FK(id_Student)References Student(id_Student)
+FK( id_language) References language(id_language)
+
+Registration(id_Registration, evaluation, id_Student, id_Subject, id_Period)
+PK(id_Registration)
+NN( evaluation, id_Student, id_Subject, id_Period)
+FK(id_Student)References Student(id_Student)
+FK(id_Subject)References Subject(id_Subject)
+FK(id_Period)References Period(id_Period)
+
+
+Close_Registration(id_close_registration, Periodo, name_student, year, subject, id_id_Registration)
+PK(id_close_registration)
+NN(Periodo, name_student, year, subject, id_id_Registration)
+FK(id_Registraion)References Registraion(id_id_Registration)
+
+Close_Notes(id_close_grades, id_Close_Registration, evaluation)
+PK(id_close_grades)
+NN(evaluation)
+FK(id_CloseRegistration)References CloseRegistration(id_CloseRegistration)

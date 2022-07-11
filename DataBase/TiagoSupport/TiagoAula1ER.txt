@@ -1,0 +1,48 @@
+BaseDeDadosTiago - PascalCase -criação da base de dados
+baseDeDadosTiago - camelCase -criação de tabelas e campos
+
+
+CREATE DATABASE BaseDeDadosTiago
+
+CREATE TABLE userTable
+	user
+	name
+	lastName
+
+
+
+
+tabela user
+	id
+	nome 
+	email
+	password
+
+tabela morada
+	id
+	morada
+	codigo
+	idUser References user id
+
+tabela compras
+	id
+	item
+	data
+	preço
+	idUser References user id  
+
+tabela teste
+	id
+	testeUm
+	testeDois
+	testeTres
+	idCompras References compras id
+
+tabela eEntão
+	id
+	testeUm
+	testeDois
+	testeTres
+	idTeste References teste id
+
+	
