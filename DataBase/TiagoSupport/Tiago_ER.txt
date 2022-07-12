@@ -28,7 +28,7 @@ FK(id_type_user)ReferencesType_User(id_Type_User)
 Address(id_Address, Address, Is_Main, id_User)
 PK(id_Address)
 NN(Address, Is_Main, id_User)
-FK(id_User)ReferencesUser(id_User)
+FK(id_User)References User(id_User)
 
 Email_Simulation(Id_Email_Simulation, change_date, Feedback, id_user)
 PK(Id_Email_Simulation)
